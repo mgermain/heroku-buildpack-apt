@@ -37,14 +37,16 @@ mkdir -p "$APT_STATE_DIR/lists/partial"
 
 APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
 
-topic "Installing add-apt-repo"
-apt-get install software-properties-common
-
-topic "Adding OpenCV nonfree ppa"
-add-apt-repository --yes ppa:xqms/opencv-nonfree
-
 topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
+
+topic "Installing add-apt-repo"
+apt-get $APT_OPTIONS -y --force-yes -d install --reinstall software-properties-common | indent
+
+topic "Adding OpenCV nonfree ppa and updating"
+add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
+apt-get $APT_OPTIONS update | indent
+
 
 for PACKAGE in $(cat $BUILD_DIR/Aptfile); do
   if [[ $PACKAGE == *deb ]]; then
