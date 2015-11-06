@@ -45,7 +45,7 @@ apt-get $APT_OPTIONS -y --force-yes -d install --reinstall software-properties-c
 
 topic "Adding OpenCV nonfree ppa and updating"
 export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.apt/usr/lib/python3/dist-packages
-/app/.apt/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
+$BUILD_DIR/.apt/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
 apt-get $APT_OPTIONS update | indent
 
 
