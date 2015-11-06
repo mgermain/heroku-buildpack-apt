@@ -136,7 +136,6 @@ export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.apt/usr/lib/python2.7/dist-packages/
 # ALIASES
 alias l='ls -al'
 
-l $BUILD_DIR/.apt/usr/
 ls -al $BUILD_DIR/.apt/usr/
 ls -al $HOME/.apt/usr/
 
@@ -160,6 +159,5 @@ make install
 #give environment to later buildpacks
 export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPPATH|PKG_CONFIG_PATH)='  > "$LP_DIR/export"
 
-l $BUILD_DIR/.apt/usr/
 ls -al $BUILD_DIR/.apt/usr/
 ls -al $HOME/.apt/usr/
