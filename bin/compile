@@ -35,7 +35,6 @@ APT_STATE_DIR="$CACHE_DIR/apt/state"
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
 
-alias l='ls -al'
 cp /etc/apt/sources.list $CACHE_DIR/apt/
 echo "deb http://ppa.launchpad.net/xqms/opencv-nonfree/ubuntu trusty main 
 deb-src http://ppa.launchpad.net/xqms/opencv-nonfree/ubuntu trusty main " >> $CACHE_DIR/apt/sources.list
@@ -45,6 +44,12 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 
 topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
+
+topic "Getting requirements for OpenCV"
+apt-get $APT_OPTIONS -y --force-yes -d install --reinstall python2.7 python2.7-dev ipython libpython2.7 libpython2.7-dev python-numpy unzip
+apt-get $APT_OPTIONS -y --force-yes -d install --reinstall build-essential
+apt-get $APT_OPTIONS -y --force-yes -d install --reinstall cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+apt-get $APT_OPTIONS -y --force-yes -d install --reinstall libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev
 
 #topic "Installing add-apt-repo"
 #mkdir -p $BUILD_DIR/.apt
@@ -77,7 +82,7 @@ for PACKAGE in $(cat $BUILD_DIR/Aptfile); do
   fi
 done
 
-# mkdir -p $BUILD_DIR/.apt
+mkdir -p $BUILD_DIR/.apt
 
 for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   topic "Installing $(basename $DEB)"
@@ -105,6 +110,8 @@ export CPPPATH=$CPPPATH:/app/.apt/usr/include
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/app/.apt/usr/include
 export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/
 export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/python2.7/dist-packages/
+# ALIASES
+alias l='ls -al'
 EOF
 
 export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
@@ -114,7 +121,6 @@ export INCLUDE_PATH="$BUILD_DIR/.apt/usr/include:$INCLUDE_PATH"
 export CPATH="$INCLUDE_PATH"
 export CPPPATH="$INCLUDE_PATH"
 export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
-
 # TEST
 export PATH=$PATH:/app/.apt/usr/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
@@ -126,6 +132,22 @@ export CPPPATH=$CPPPATH:/app/.apt/usr/include
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/app/.apt/usr/include
 export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/
 export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/python2.7/dist-packages/
+# ALIASES
+alias l='ls -al'
 
 #give environment to later buildpacks
 export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPPATH|PKG_CONFIG_PATH)='  > "$LP_DIR/export"
+
+topic "Installing OpenCV"
+mkdir $CACHE_DIR/opencv_files
+cd $CACHE_DIR/opencv_files
+wget https://github.com/Itseez/opencv/archive/2.4.12.3.zip
+unzip 2.4.12.3.zip
+
+cd opencv-2.4.12.3
+mkdir build
+cd build
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=$BUILD_DIR/.apt/usr -D WITH_1394=OFF -D BUILD_NEW_PYTHON_SUPPORT=ON -D PYTHON_EXECUTABLE=$BUILD_DIR/.apt/usr/bin/python -D PYTHONG_INCLUDE_DIR=$BUILD_DIR/.apt/usr/include/python2.7 -D PYTHON_LIBRARY=$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libpython2.7.so -D PYTHON_PACKAGES_PATH=$BUILD_DIR/.apt/usr/lib/python2.7/dist-packages -D PYTHON_NUMPY_INCLUDE_DIR=$BUILD_DIR/.apt/usr/lib/python2.7/dist-packages/numpy/core/include ..
+make -j 8
+make install
