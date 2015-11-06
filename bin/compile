@@ -136,8 +136,10 @@ export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.apt/usr/lib/python2.7/dist-packages/
 # ALIASES
 alias l='ls -al'
 
-#give environment to later buildpacks
-export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPPATH|PKG_CONFIG_PATH)='  > "$LP_DIR/export"
+l $BUILD_DIR/.apt/usr/
+ls -al $BUILD_DIR/.apt/usr/
+ls -al $HOME/.apt/usr/
+
 
 topic "Installing OpenCV"
 mkdir $CACHE_DIR/opencv_files
@@ -152,3 +154,12 @@ cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=$BUILD_DIR/.apt/usr -D WITH_1394=OFF -D BUILD_NEW_PYTHON_SUPPORT=ON -D PYTHON_EXECUTABLE=$BUILD_DIR/.apt/usr/bin/python -D PYTHONG_INCLUDE_DIR=$BUILD_DIR/.apt/usr/include/python2.7 -D PYTHON_LIBRARY=$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libpython2.7.so -D PYTHON_PACKAGES_PATH=$BUILD_DIR/.apt/usr/lib/python2.7/dist-packages -D PYTHON_NUMPY_INCLUDE_DIR=$BUILD_DIR/.apt/usr/lib/python2.7/dist-packages/numpy/core/include ..
 make -j 8
 make install
+
+
+
+#give environment to later buildpacks
+export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPPATH|PKG_CONFIG_PATH)='  > "$LP_DIR/export"
+
+l $BUILD_DIR/.apt/usr/
+ls -al $BUILD_DIR/.apt/usr/
+ls -al $HOME/.apt/usr/
