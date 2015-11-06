@@ -45,9 +45,9 @@ topic "Installing add-apt-repo"
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall software-properties-common | indent
 
 topic "print shit"
-ls -al $CACHE_DIR
-ls -al $APT_CACHE_DIR
-ls -al $APT_STATE_DIR
+ls -al $CACHE_DIR/apt
+ls -al $APT_CACHE_DIR/archives
+ls -al $APT_STATE_DIR/lists
 ls -al "$APT_STATE_DIR/lists/partial"
 
 topic "Adding OpenCV nonfree ppa and updating"
