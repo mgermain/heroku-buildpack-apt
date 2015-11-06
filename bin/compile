@@ -72,8 +72,8 @@ export CPPPATH="\$INCLUDE_PATH"
 export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/i386-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
 # TEST
 export PATH=$PATH:/app/.apt/usr/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas
-export LIBRARY_PATH=$LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
+export LIBRARY_PATH=$LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
 export INCLUDE_PATH=$INCLUDE_PATH:/app/.apt/usr/include
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:/app/.apt/usr/include
 export CPATH=$CPATH:/app/.apt/usr/include
@@ -93,8 +93,8 @@ export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUIL
 
 # TEST
 export PATH=$PATH:/app/.apt/usr/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas
-export LIBRARY_PATH=$LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
+export LIBRARY_PATH=$LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
 export INCLUDE_PATH=$INCLUDE_PATH:/app/.apt/usr/include
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:/app/.apt/usr/include
 export CPATH=$CPATH:/app/.apt/usr/include
