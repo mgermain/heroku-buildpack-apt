@@ -45,8 +45,8 @@ topic "Installing add-apt-repo"
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall software-properties-common | indent
 
 topic "Adding OpenCV nonfree ppa and updating"
-export PYTHONPATH=$PYTHONPATH:$APT_CACHE_DIR/usr/lib/python3/dist-packages
-$APT_CACHE_DIR/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
+export PYTHONPATH=$PYTHONPATH:$CACHE_DIR/usr/lib/python3/dist-packages
+$CACHE_DIR/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
 apt-get $APT_OPTIONS update | indent
 
 
