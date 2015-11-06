@@ -35,11 +35,14 @@ APT_STATE_DIR="$CACHE_DIR/apt/state"
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
 
+ls -al $APT_STATE_DIR/lists
+
 APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
 
 topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
-
+ls -al $APT_STATE_DIR/lists
+exit()
 
 #topic "Installing add-apt-repo"
 #mkdir -p $BUILD_DIR/.apt
