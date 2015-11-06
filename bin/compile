@@ -41,20 +41,20 @@ topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
 
 
-topic "Installing add-apt-repo"
-mkdir -p $BUILD_DIR/.apt
+#topic "Installing add-apt-repo"
+#mkdir -p $BUILD_DIR/.apt
 
-apt-get $APT_OPTIONS -y --force-yes -d install --reinstall software-properties-common | indent
+#apt-get $APT_OPTIONS -y --force-yes -d install --reinstall software-properties-common | indent
 
-for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
-  topic "Installing $(basename $DEB)"
-  dpkg -x $DEB $BUILD_DIR/.apt/
-done
+#for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
+#  topic "Installing $(basename $DEB)"
+#  dpkg -x $DEB $BUILD_DIR/.apt/
+#done
 
-topic "Adding OpenCV nonfree ppa and updating"
-export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.apt/usr/lib/python3/dist-packages
-$BUILD_DIR/.apt/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
-apt-get $APT_OPTIONS update | indent
+#topic "Adding OpenCV nonfree ppa and updating"
+#export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.apt/usr/lib/python3/dist-packages
+#$BUILD_DIR/.apt/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
+#apt-get $APT_OPTIONS update | indent
 
 # rm -rf $BUILD_DIR/.tmp $BUILD_DIR/.cach $BUILD_DIR/.stat
 
