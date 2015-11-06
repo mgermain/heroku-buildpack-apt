@@ -101,16 +101,16 @@ export CPATH="\$INCLUDE_PATH"
 export CPPPATH="\$INCLUDE_PATH"
 export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/i386-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
 # TEST
-export PATH=$PATH:/app/.apt/usr/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
-export LIBRARY_PATH=$LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
-export INCLUDE_PATH=$INCLUDE_PATH:/app/.apt/usr/include
-export C_INCLUDE_PATH=$C_INCLUDE_PATH:/app/.apt/usr/include
-export CPATH=$CPATH:/app/.apt/usr/include
-export CPPPATH=$CPPPATH:/app/.apt/usr/include
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/app/.apt/usr/include
-export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/
-export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/python2.7/dist-packages/
+export PATH=$PATH:$HOME/.apt/usr/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.apt/usr/lib/:/app/.apt/usr/lib/lapack:$HOME/.apt/usr/lib/libblas:$HOME/.apt/usr/lib/x86_64-linux-gnu/
+export LIBRARY_PATH=$LIBRARY_PATH:$HOME/.apt/usr/lib/:$HOME/.apt/usr/lib/lapack:$HOME/.apt/usr/lib/libblas:$HOME/.apt/usr/lib/x86_64-linux-gnu/
+export INCLUDE_PATH=$INCLUDE_PATH:$HOME/.apt/usr/include
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:$HOME/.apt/usr/include
+export CPATH=$CPATH:$HOME/.apt/usr/include
+export CPPPATH=$CPPPATH:$HOME/.apt/usr/include
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/.apt/usr/include
+export PYTHONPATH=$PYTHONPATH:$HOME/.apt/usr/lib/
+export PYTHONPATH=$PYTHONPATH:$HOME/.apt/usr/lib/python2.7/dist-packages/
 # ALIASES
 alias l='ls -al'
 EOF
@@ -123,16 +123,16 @@ export CPATH="$INCLUDE_PATH"
 export CPPPATH="$INCLUDE_PATH"
 export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
 # TEST
-export PATH=$PATH:/app/.apt/usr/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
-export LIBRARY_PATH=$LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/x86_64-linux-gnu/
-export INCLUDE_PATH=$INCLUDE_PATH:/app/.apt/usr/include
-export C_INCLUDE_PATH=$C_INCLUDE_PATH:/app/.apt/usr/include
-export CPATH=$CPATH:/app/.apt/usr/include
-export CPPPATH=$CPPPATH:/app/.apt/usr/include
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/app/.apt/usr/include
-export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/
-export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/python2.7/dist-packages/
+export PATH=$PATH:$BUILD_DIR/.apt/usr/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BUILD_DIR/.apt/usr/lib/:/app/.apt/usr/lib/lapack:$BUILD_DIR/.apt/usr/lib/libblas:$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
+export LIBRARY_PATH=$LIBRARY_PATH:$BUILD_DIR/.apt/usr/lib/:$BUILD_DIR/.apt/usr/lib/lapack:$BUILD_DIR/.apt/usr/lib/libblas:$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
+export INCLUDE_PATH=$INCLUDE_PATH:$BUILD_DIR/.apt/usr/include
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:$BUILD_DIR/.apt/usr/include
+export CPATH=$CPATH:$BUILD_DIR/.apt/usr/include
+export CPPPATH=$CPPPATH:$BUILD_DIR/.apt/usr/include
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$BUILD_DIR/.apt/usr/include
+export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.apt/usr/lib/
+export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.apt/usr/lib/python2.7/dist-packages/
 # ALIASES
 alias l='ls -al'
 
