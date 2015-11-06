@@ -42,18 +42,30 @@ apt-get $APT_OPTIONS update | indent
 
 
 topic "Installing add-apt-repo"
-apt-get $APT_OPTIONS -y --force-yes -d install --reinstall software-properties-common | indent
+mkdir -p $BUILD_DIR/.tmp
+mkdir -p $BUILD_DIR/.cach
+mkdir -p $BUILD_DIR/.stat
 
-topic "print shit"
-ls -al $CACHE_DIR/apt
-ls -al $APT_CACHE_DIR/archives
-ls -al $APT_STATE_DIR/lists
-ls -al "$APT_STATE_DIR/lists/partial"
+APT_OPTIONS_INS="-o debug::nolocking=true -o dir::cache=$BUILD_DIR/.cach -o dir::state=$BUILD_DIR/.stat"
+apt-get $APT_OPTIONS_INS -y --force-yes -d install --reinstall software-properties-common | indent
+
+for DEB in $(ls -1 $BUILD_DIR/.cach/archives/*.deb); do
+  topic "Installing $(basename $DEB)"
+  dpkg -x $DEB $BUILD_DIR/.tmp/
+done
+
+#topic "print shit"
+#ls -al $CACHE_DIR/apt # rien
+#ls -al $APT_CACHE_DIR/archives
+#ls -al $APT_STATE_DIR/lists
+#ls -al "$APT_STATE_DIR/lists/partial"
 
 topic "Adding OpenCV nonfree ppa and updating"
-export PYTHONPATH=$PYTHONPATH:$CACHE_DIR/usr/lib/python3/dist-packages
-$CACHE_DIR/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
+export PYTHONPATH=$PYTHONPATH:$BUILD_DIR/.tmp/usr/lib/python3/dist-packages
+$BUILD_DIR/.tmp/usr/bin/add-apt-repository --yes ppa:xqms/opencv-nonfree | indent
 apt-get $APT_OPTIONS update | indent
+
+# rm -rf $BUILD_DIR/.tmp $BUILD_DIR/.cach $BUILD_DIR/.stat
 
 
 for PACKAGE in $(cat $BUILD_DIR/Aptfile); do
