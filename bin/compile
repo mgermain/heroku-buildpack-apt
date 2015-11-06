@@ -70,6 +70,17 @@ export INCLUDE_PATH="\$HOME/.apt/usr/include:\$INCLUDE_PATH"
 export CPATH="\$INCLUDE_PATH"
 export CPPPATH="\$INCLUDE_PATH"
 export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/i386-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
+# TEST
+export PATH=$PATH:/app/.apt/usr/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas
+export LIBRARY_PATH=$LIBRARY_PATH:/app/.apt/usr/lib/:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/libblas
+export INCLUDE_PATH=$INCLUDE_PATH:/app/.apt/usr/include
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:/app/.apt/usr/include
+export CPATH=$CPATH:/app/.apt/usr/include
+export CPPPATH=$CPPPATH:/app/.apt/usr/include
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/app/.apt/usr/include
+export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/
+export PYTHONPATH=$PYTHONPATH:/app/.apt/usr/lib/python2.7/dist-packages/
 EOF
 
 export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
